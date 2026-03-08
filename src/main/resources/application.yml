@@ -1,0 +1,6 @@
+# Global application YAML
+spring:
+  application:
+    name: card-service
+  profiles:
+    active: local

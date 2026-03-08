@@ -1,0 +1,25 @@
+type Query {
+    cards: [Card!]!
+    cardById(id: ID!): Card
+}
+
+type Card {
+    id: ID!
+    code: String
+    rarity: String
+    name: String
+    effect: String
+    level: String
+    cost: String
+    color: String
+    cardType: String
+    zone: String
+    trait: String
+    link: String
+    ap: String
+    hp: String
+    sourceTitle: String
+    getIt: String
+    imageSmall: String,
+    imageLarge: String
+}

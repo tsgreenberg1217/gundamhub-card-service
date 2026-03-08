@@ -1,0 +1,15 @@
+card-service:
+  db-host: localhost
+
+#spring:
+#  data:
+#    mongodb:
+#      database: gundam-cards
+#      uri: mongodb://localhost:27017/gundam-cards?readPreference=primaryPreferred&directConnection=true
+#      authentication-database: admin
+#      username: root
+#      password: example
+logging:
+  level:
+    org.springframework.boot.autoconfigure.mongo: DEBUG
+    org.springframework.data.mongodb.core: DEBUG
