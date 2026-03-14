@@ -1,6 +1,7 @@
 package com.gundamhub.card_service.graphql
 
 import com.gundamhub.card_service.data.CardDto
+import com.gundamhub.card_service.data.CardFilter
 import com.gundamhub.card_service.service.CardService
 import org.slf4j.LoggerFactory
 import org.springframework.graphql.data.method.annotation.Argument
@@ -14,8 +15,8 @@ class CardController(
     private val log = LoggerFactory.getLogger(CardController::class.java)
 
     @QueryMapping
-    fun cards(): List<CardDto> = try {
-        cardService.findAll()
+    fun cards(@Argument filter: CardFilter?): List<CardDto> = try {
+        if (filter != null) cardService.findByFilter(filter) else cardService.findAll()
     } catch (ex: Exception) {
         log.error("Error fetching cards", ex)
         emptyList()
@@ -29,5 +30,13 @@ class CardController(
             log.error("Error fetching card $id", ex)
             null
         }
+    }
+
+    @QueryMapping
+    fun cardByName(@Argument name: String): List<CardDto> = try {
+        cardService.findByName(name)
+    } catch (ex: Exception) {
+        log.error("Error fetching cards by name '$name'", ex)
+        emptyList()
     }
 }

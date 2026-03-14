@@ -1,6 +1,14 @@
 type Query {
-    cards: [Card!]!
+    cards(filter: CardFilter): [Card!]!
     cardById(id: ID!): Card
+    cardByName(name: String!): [Card!]!
+}
+
+input CardFilter {
+    level: String
+    cost: String
+    color: String
+    unit: String
 }
 
 type Card {
