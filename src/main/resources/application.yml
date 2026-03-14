@@ -1,5 +1,8 @@
 # Global application YAML
 spring:
+  threads:
+    virtual:
+      enabled: true
   application:
     name: card-service
   profiles:
