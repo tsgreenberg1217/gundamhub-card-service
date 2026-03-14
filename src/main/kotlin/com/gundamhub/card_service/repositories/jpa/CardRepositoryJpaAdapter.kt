@@ -40,4 +40,7 @@ class CardRepositoryJpaAdapter(
 
     override fun findByName(name: String): Iterable<Card> =
         delegate.findByNameContainingIgnoreCase(name).map { it.toCard() }
+
+    override fun findByExactName(name: String): Iterable<Card> =
+        delegate.findByName(name).map { it.toCard() }
 }

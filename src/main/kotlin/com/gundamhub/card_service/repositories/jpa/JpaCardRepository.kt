@@ -8,5 +8,6 @@ import org.springframework.data.repository.CrudRepository
 @Profile("local")
 interface JpaCardRepository : CrudRepository<JpaCard, String>, JpaSpecificationExecutor<JpaCard> {
     fun findByNameContainingIgnoreCase(name: String): List<JpaCard>
+    fun findByName(name: String): List<JpaCard>
 }
 

@@ -16,6 +16,8 @@ class CardService(private val cardRepository: CardRepository) {
 
     fun findByName(name: String): List<CardDto> = cardRepository.findByName(name).map { it.toDtoWithoutSet() }
 
+    fun getCard(name: String): List<CardDto> = cardRepository.findByExactName(name).map { it.toDtoWithoutSet() }
+
 }
 
 // mapping extension: avoid reading setInfo to prevent lazy initialization
