@@ -24,7 +24,8 @@ class MongoCard(
     val ap: String? = null,
     val hp: String? = null,
     val sourceTitle: String? = null,
-    val getIt: String? = null,
+    val setId: String? = null,
+    val setName: String? = null,
     val images: MongoImageSet? = null,
 )
 
@@ -49,7 +50,8 @@ fun MongoCard.toCard() = Card(
     ap = this.ap,
     hp = this.hp,
     sourceTitle = this.sourceTitle,
-    getIt = this.getIt,
+    setId = this.setId,
+    setName = this.setName,
     urlSmall = this.images?.small,
     urlLarge = this.images?.large,
 )
@@ -70,6 +72,6 @@ fun Card.toMongoCard() = MongoCard(
     ap = this.ap,
     hp = this.hp,
     sourceTitle = this.sourceTitle,
-    getIt = this.getIt,
-
+    setId = this.setId,
+    setName = this.setName,
 )

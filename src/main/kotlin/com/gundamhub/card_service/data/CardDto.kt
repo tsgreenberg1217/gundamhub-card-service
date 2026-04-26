@@ -19,8 +19,8 @@ data class CardDto(
     val ap: String?,
     val hp: String?,
     val sourceTitle: String?,
-    val getIt: String?,
-//    val setId: String?,
+    val setId: String?,
+    val setName: String?,
     val imageSmall: String?,
     val imageLarge: String?
 )

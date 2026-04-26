@@ -32,19 +32,4 @@ class CardController(
         }
     }
 
-    @QueryMapping
-    fun cardByName(@Argument name: String): List<CardDto> = try {
-        cardService.findByName(name)
-    } catch (ex: Exception) {
-        log.error("Error fetching cards by name '$name'", ex)
-        emptyList()
-    }
-
-    @QueryMapping
-    fun getCard(@Argument name: String): List<CardDto> = try {
-        cardService.getCard(name)
-    } catch (ex: Exception) {
-        log.error("Error fetching cards with exact name '$name'", ex)
-        emptyList()
-    }
 }

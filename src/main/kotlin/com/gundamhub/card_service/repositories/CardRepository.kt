@@ -9,7 +9,5 @@ interface CardRepository {
     fun findById(id: String): Optional<Card>
     fun saveAll(cards: Iterable<Card>): Iterable<Card>
     fun findByFilter(filter: CardFilter): Iterable<Card>
-    fun findByName(name: String): Iterable<Card>
-    fun findByExactName(name: String): Iterable<Card>
 }
 

@@ -1,15 +1,24 @@
 type Query {
     cards(filter: CardFilter): [Card!]!
     cardById(id: ID!): Card
-    cardByName(name: String!): [Card!]!
-    getCard(name: String!): [Card!]!
 }
 
 input CardFilter {
+    name: String
+    code: String
+    rarity: String
     level: String
     cost: String
     color: String
-    unit: String
+    cardType: String
+    zone: String
+    trait: String
+    link: String
+    ap: String
+    hp: String
+    sourceTitle: String
+    setId: String
+    setName: String
 }
 
 type Card {
@@ -28,7 +37,8 @@ type Card {
     ap: String
     hp: String
     sourceTitle: String
-    getIt: String
+    setId: String
+    setName: String
     imageSmall: String,
     imageLarge: String
 }

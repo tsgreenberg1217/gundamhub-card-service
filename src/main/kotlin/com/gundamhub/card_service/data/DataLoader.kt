@@ -31,10 +31,8 @@ class DataLoader(private val cardRepository: CardRepository) : CommandLineRunner
             val list: List<Map<String, Any?>> = mapper.readValue(cleaned)
 
             val cards = list.map { m ->
-//                val setInfo = m["set"]?.let { mapper.convertValue(it, SetInfo::class.java) }
-//                val imageInfo = m["images"]?.let { mapper.convertValue(it, ImageInfo::class.java) }
-                val small: String = (m["images"] as LinkedHashMap<*, *>)["small"] as String
-                val large: String = (m["images"] as LinkedHashMap<*, *>)["large"] as String
+                val images = m["images"] as? LinkedHashMap<*, *>
+                val set = m["set"] as? LinkedHashMap<*, *>
                 Card(
                     id = m["id"].toString(),
                     code = m["code"]?.toString(),
@@ -51,9 +49,10 @@ class DataLoader(private val cardRepository: CardRepository) : CommandLineRunner
                     ap = m["ap"]?.toString(),
                     hp = m["hp"]?.toString(),
                     sourceTitle = m["sourceTitle"]?.toString(),
-                    getIt = m["getIt"]?.toString(),
-                    urlSmall = small.toString(),
-                    urlLarge = large.toString()
+                    setId = set?.get("id")?.toString(),
+                    setName = set?.get("name")?.toString(),
+                    urlSmall = images?.get("small")?.toString(),
+                    urlLarge = images?.get("large")?.toString(),
                 )
             }
 

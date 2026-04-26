@@ -29,20 +29,25 @@ class CardRepositoryMongoAdapter(
     override fun findByFilter(filter: CardFilter): Iterable<Card> {
         val criteria = buildList {
             with(filter) {
+                name?.let { add(Criteria.where("name").regex(it, "i")) }
+                code?.let { add(Criteria.where("code").`is`(it)) }
+                rarity?.let { add(Criteria.where("rarity").`is`(it)) }
+                level?.let { add(Criteria.where("level").`is`(it)) }
                 cost?.let { add(Criteria.where("cost").`is`(it)) }
                 color?.let { add(Criteria.where("color").`is`(it)) }
-                unit?.let { add(Criteria.where("cardType").`is`(it)) }
-                level?.let { add(Criteria.where("level").`is`(it)) }
+                cardType?.let { add(Criteria.where("cardType").`is`(it)) }
+                zone?.let { add(Criteria.where("zone").`is`(it)) }
+                trait?.let { add(Criteria.where("trait").`is`(it)) }
+                link?.let { add(Criteria.where("link").`is`(it)) }
+                ap?.let { add(Criteria.where("ap").`is`(it)) }
+                hp?.let { add(Criteria.where("hp").`is`(it)) }
+                sourceTitle?.let { add(Criteria.where("sourceTitle").`is`(it)) }
+                setId?.let { add(Criteria.where("setId").`is`(it)) }
+                setName?.let { add(Criteria.where("setName").`is`(it)) }
             }
         }
 
         val query = if (criteria.isEmpty()) Query() else Query(Criteria().andOperator(*criteria.toTypedArray()))
         return mongoOperations.find(query, MongoCard::class.java).map { it.toCard() }
     }
-
-    override fun findByName(name: String): Iterable<Card> =
-        delegate.findByNameContainingIgnoreCase(name).map { it.toCard() }
-
-    override fun findByExactName(name: String): Iterable<Card> =
-        delegate.findByName(name).map { it.toCard() }
 }

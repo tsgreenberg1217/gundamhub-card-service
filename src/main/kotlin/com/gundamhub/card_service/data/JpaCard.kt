@@ -28,7 +28,8 @@ class JpaCard(
     val ap: String? = null,
     val hp: String? = null,
     val sourceTitle: String? = null,
-    val getIt: String? = null,
+    val setId: String? = null,
+    val setName: String? = null,
     val urlSmall: String? = null,
     val urlLarge: String? = null,
 )
@@ -49,7 +50,8 @@ fun JpaCard.toCard() = Card(
     ap = this.ap,
     hp = this.hp,
     sourceTitle = this.sourceTitle,
-    getIt = this.getIt,
+    setId = this.setId,
+    setName = this.setName,
     urlSmall = this.urlSmall,
     urlLarge = this.urlLarge
 )
@@ -70,7 +72,8 @@ fun Card.toJpaCard() = JpaCard(
     ap = this.ap,
     hp = this.hp,
     sourceTitle = this.sourceTitle,
-    getIt = this.getIt,
+    setId = this.setId,
+    setName = this.setName,
     urlSmall = this.urlSmall,
     urlLarge = this.urlLarge
 )

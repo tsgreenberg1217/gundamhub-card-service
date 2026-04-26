@@ -28,19 +28,24 @@ class CardRepositoryJpaAdapter(
     override fun findByFilter(filter: CardFilter): Iterable<Card> {
         val spec = Specification<JpaCard> { root, _, cb ->
             val predicates = listOfNotNull(
+                filter.name?.let { cb.like(cb.lower(root.get("name")), "%${it.lowercase()}%") },
+                filter.code?.let { cb.equal(root.get<String>("code"), it) },
+                filter.rarity?.let { cb.equal(root.get<String>("rarity"), it) },
                 filter.level?.let { cb.equal(root.get<String>("level"), it) },
                 filter.cost?.let { cb.equal(root.get<String>("cost"), it) },
                 filter.color?.let { cb.equal(root.get<String>("color"), it) },
-                filter.unit?.let { cb.equal(root.get<String>("cardType"), it) },
+                filter.cardType?.let { cb.equal(root.get<String>("cardType"), it) },
+                filter.zone?.let { cb.equal(root.get<String>("zone"), it) },
+                filter.trait?.let { cb.equal(root.get<String>("trait"), it) },
+                filter.link?.let { cb.equal(root.get<String>("link"), it) },
+                filter.ap?.let { cb.equal(root.get<String>("ap"), it) },
+                filter.hp?.let { cb.equal(root.get<String>("hp"), it) },
+                filter.sourceTitle?.let { cb.equal(root.get<String>("sourceTitle"), it) },
+                filter.setId?.let { cb.equal(root.get<String>("setId"), it) },
+                filter.setName?.let { cb.equal(root.get<String>("setName"), it) },
             )
             cb.and(*predicates.toTypedArray())
         }
         return delegate.findAll(spec).map { it.toCard() }
     }
-
-    override fun findByName(name: String): Iterable<Card> =
-        delegate.findByNameContainingIgnoreCase(name).map { it.toCard() }
-
-    override fun findByExactName(name: String): Iterable<Card> =
-        delegate.findByName(name).map { it.toCard() }
 }

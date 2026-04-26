@@ -14,10 +14,6 @@ class CardService(private val cardRepository: CardRepository) {
 
     fun findByFilter(filter: CardFilter): List<CardDto> = cardRepository.findByFilter(filter).map { it.toDtoWithoutSet() }
 
-    fun findByName(name: String): List<CardDto> = cardRepository.findByName(name).map { it.toDtoWithoutSet() }
-
-    fun getCard(name: String): List<CardDto> = cardRepository.findByExactName(name).map { it.toDtoWithoutSet() }
-
 }
 
 // mapping extension: avoid reading setInfo to prevent lazy initialization
@@ -37,7 +33,8 @@ private fun com.gundamhub.card_service.data.Card.toDtoWithoutSet() = CardDto(
     ap = this.ap,
     hp = this.hp,
     sourceTitle = this.sourceTitle,
-    getIt = this.getIt,
+    setId = this.setId,
+    setName = this.setName,
     imageSmall = this.urlSmall,
     imageLarge = this.urlLarge
 )

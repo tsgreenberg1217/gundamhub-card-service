@@ -16,7 +16,8 @@ data class Card(
     val ap: String? = null,
     val hp: String? = null,
     val sourceTitle: String? = null,
-    val getIt: String? = null,
+    val setId: String? = null,
+    val setName: String? = null,
     val urlSmall: String? = null,
     val urlLarge: String? = null,
 )
